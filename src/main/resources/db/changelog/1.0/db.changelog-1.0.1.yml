@@ -1,0 +1,26 @@
+databaseChangeLog:
+  - changeSet:
+      id: create rooms table
+      author: koceri07
+      changes:
+        - createTable:
+            tableName: rooms
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: room_number
+                  type: INT
+              - column:
+                  name: room_type
+                  type: VARCHAR(32)
+              - column:
+                  name: is_available
+                  type: boolean
+              - column:
+                  name: price_per_night
+                  type: INT

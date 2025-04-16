@@ -1,0 +1,43 @@
+package org.hotelmanagement.hotelmanagementbackend.entity;
+
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import java.util.Objects;
+
+@Entity
+@Table(name = "rooms")
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+public class RoomEntity {
+    @Id
+    @GeneratedValue
+    private Long id;
+
+    @Column
+    private int roomNumber;
+    @Column
+    private String roomType;
+    @Column
+    private boolean isAvailable;
+    @Column
+    private Double pricePerNight;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        RoomEntity that = (RoomEntity) o;
+        return Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
+    }
+}
