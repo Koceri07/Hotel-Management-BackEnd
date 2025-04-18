@@ -10,7 +10,9 @@ import org.mapstruct.factory.Mappers;
 public interface ClientMapper {
     ClientMapper INSTANCE = Mappers.getMapper(ClientMapper.class);
 
+    @Mapping(target = "id", ignore = true)
     ClientEntity toEntity(ClientDto clientDto);
 
+    @Mapping(target = "id", ignore = true)
     ClientDto toDto(ClientEntity clientEntity);
 }

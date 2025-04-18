@@ -11,5 +11,5 @@ public class RoomDto {
     private int roomNumber;
     private String roomType;
     private boolean isAvailable;
-    private Double pricePerNight;
+    private int pricePerNight;
 }

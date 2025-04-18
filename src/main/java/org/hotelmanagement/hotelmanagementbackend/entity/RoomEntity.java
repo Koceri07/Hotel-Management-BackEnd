@@ -16,7 +16,7 @@ import java.util.Objects;
 @NoArgsConstructor
 public class RoomEntity {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column
@@ -26,7 +26,7 @@ public class RoomEntity {
     @Column
     private boolean isAvailable;
     @Column
-    private Double pricePerNight;
+    private int pricePerNight;
 
     @Override
     public boolean equals(Object o) {
