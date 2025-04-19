@@ -1,0 +1,35 @@
+databaseChangeLog:
+  - changeSet:
+      id: create deleted clients table
+      author: Koceri07
+      changes:
+        - createTable:
+            tableName: deleted_clients
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: first_name
+                  type: varchar(16)
+              - column:
+                  name: last_name
+                  type: VARCHAR(32)
+              - column:
+                  name: fincode
+                  type: VARCHAR(16)
+              - column:
+                  name: wristband
+                  type: VARCHAR(16)
+              - column:
+                  name: room_number
+                  type: BIGINT
+              - column:
+                  name: stay_duration
+                  type: INT
+              - column:
+                  name: check_in
+                  type: TIMESTAMP

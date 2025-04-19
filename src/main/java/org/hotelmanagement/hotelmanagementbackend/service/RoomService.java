@@ -1,5 +1,6 @@
 package org.hotelmanagement.hotelmanagementbackend.service;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.hotelmanagement.hotelmanagementbackend.dto.RoomDto;
@@ -48,6 +49,7 @@ public class RoomService {
         log.info("Action.deleteRoomById.end for id {}", id);
     }
 
+    @Transactional
     public int findEmtyRoom(){
         log.info("Action.findEmtyRoom.start");
         int roomNumber = roomRepository.findFirstEmptyRoom();

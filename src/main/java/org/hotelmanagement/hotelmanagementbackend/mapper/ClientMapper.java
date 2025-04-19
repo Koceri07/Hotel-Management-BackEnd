@@ -13,6 +13,6 @@ public interface ClientMapper {
     @Mapping(target = "id", ignore = true)
     ClientEntity toEntity(ClientDto clientDto);
 
-    @Mapping(target = "id", ignore = true)
+//    @Mapping(target = "id", ignore = true)
     ClientDto toDto(ClientEntity clientEntity);
 }

@@ -29,7 +29,7 @@ public class ClientEntity {
     @Column
     private int roomNumber;
     @Column
-    private boolean reservation_status ;
+    private boolean reservation_status;
     @Column
     private int stay_duration;
     @Column

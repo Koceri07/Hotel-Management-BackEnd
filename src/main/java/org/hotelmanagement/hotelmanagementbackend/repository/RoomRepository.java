@@ -16,11 +16,13 @@ public interface RoomRepository extends CrudRepository<RoomEntity, Long> {
     int findFirstEmptyRoom();
 
     @Modifying
-    @Query(value = "UPDATE rooms SET is_available = false WHERE is_available = true ORDER BY id LIMIT 1;", nativeQuery = true)
+    @Query(value = "UPDATE rooms SET is_available = false WHERE id = (SELECT id FROM rooms WHERE is_available = true ORDER BY id LIMIT 1);", nativeQuery = true)
     void changeIsAvailableFalse();
 
-//    @Query(value = "SELECT id FROM rooms WHERE is_available  = true ORDER BY id LIMIT 1;", nativeQuery = true)
-//    Long findFirstEmptyRoomId();
+
+    @Modifying
+    @Query(value = "UPDATE rooms SET is_available = true WHERE room_number = :room_number;",nativeQuery = true)
+    void changeIsAvailableTrueWithId(@Param("room_number") int room_number);
 
 }
 

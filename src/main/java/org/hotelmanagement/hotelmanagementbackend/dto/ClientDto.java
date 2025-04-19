@@ -21,11 +21,11 @@ public class ClientDto {
     @Length(min = 3,max = 32)
     private String lastName;
 
+    private boolean isActive;
     private String fincode;
     private String wristband;
     private int roomNumber;
     private boolean reservation_status ;
     private int stay_duration;
     private LocalDateTime check_in;
-
 }

@@ -1,12 +1,15 @@
 package org.hotelmanagement.hotelmanagementbackend.service;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.hotelmanagement.hotelmanagementbackend.dto.ClientDto;
 import org.hotelmanagement.hotelmanagementbackend.entity.ClientEntity;
 import org.hotelmanagement.hotelmanagementbackend.exception.NotFoundException;
 import org.hotelmanagement.hotelmanagementbackend.mapper.ClientMapper;
+import org.hotelmanagement.hotelmanagementbackend.mapper.DeletedClientMapper;
 import org.hotelmanagement.hotelmanagementbackend.repository.ClientRepository;
+import org.hotelmanagement.hotelmanagementbackend.repository.DeletedClientRepository;
 import org.hotelmanagement.hotelmanagementbackend.repository.RoomRepository;
 import org.springframework.stereotype.Service;
 
@@ -17,8 +20,9 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ClientService {
     private final ClientRepository clientRepository;
-    private final RoomRepository roomRepository;
     private final RoomService roomService;
+    private final DeletedClientRepository deletedClientRepository;
+    private final RoomRepository roomRepository;
 
     public void createClient(ClientDto clientDto){
         log.info("Action.createClient.start for name {}", clientDto.getFirstName());
@@ -48,8 +52,14 @@ public class ClientService {
     }
 
     //
+    @Transactional
     public void deleteClientById(Long id){
         log.info("Action.deleteClientById.start for id {}", id);
+        var clientDto = getClientById(id);
+        var deletedClient = DeletedClientMapper.INSTANCE.dtoToDeletedClient(clientDto);
+        deletedClientRepository.save(deletedClient);
+        int roomNumber = clientDto.getRoomNumber();
+        roomRepository.changeIsAvailableTrueWithId(roomNumber);
         clientRepository.deleteById(id);
         log.info("Action.deleteClientById.end for id {}", id);
     }
