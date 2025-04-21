@@ -1,25 +1,23 @@
 package org.hotelmanagement.hotelmanagementbackend.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hotelmanagement.hotelmanagementbackend.enums.RoomType;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 @Entity
+@Table(name = "reservations")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class ReservationEntity {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column
@@ -30,4 +28,20 @@ public class ReservationEntity {
     private LocalDateTime reservationDate;
     @Column
     private int roomNumber;
+    @Column
+    private int stayDuration;
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ReservationEntity that = (ReservationEntity) o;
+        return Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
+    }
 }

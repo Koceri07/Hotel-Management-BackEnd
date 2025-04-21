@@ -1,0 +1,29 @@
+databaseChangeLog:
+  - changeSet:
+      id: creat reservations table
+      author: Koceri07
+      changes:
+        - createTable:
+            tableName: reservations
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: client_first_name
+                  type: varchar(16)
+              - column:
+                  name: client_last_name
+                  type: varchar(32)
+              - column:
+                  name: reservation_date
+                  type: TIMESTAMP
+              - column:
+                  name: room_number
+                  type: int
+              - column:
+                  name: stay_duration
+                  type: int
