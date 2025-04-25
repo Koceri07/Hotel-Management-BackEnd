@@ -10,7 +10,7 @@ import org.mapstruct.factory.Mappers;
 public interface ReservationMapper {
     ReservationMapper INSTANCE = Mappers.getMapper(ReservationMapper.class);
 
-//    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "id", ignore = true)
     ReservationEntity toEntity(ReservationDto reservationDto);
 
     ReservationDto toDto(ReservationEntity reservationEntity);

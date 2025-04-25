@@ -13,4 +13,9 @@ public class Handler {
     public ResponseEntity<Error> NotFoundException(NotFoundException e){
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new Error(e.getMessage(), "Not Found"));
     }
+
+    @ExceptionHandler
+    public ResponseEntity<Error> ReservationAlreadyExists(ReservationAlreadyExists e){
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new Error(e.getMessage(), "Reservation Alredy Exists"));
+    }
 }

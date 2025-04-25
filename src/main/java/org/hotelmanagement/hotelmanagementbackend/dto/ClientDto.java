@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.validator.constraints.Length;
+import org.hotelmanagement.hotelmanagementbackend.enums.Wristband;
 
 import java.time.LocalDateTime;
 

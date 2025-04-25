@@ -5,10 +5,12 @@ import lombok.extern.slf4j.Slf4j;
 import org.hotelmanagement.hotelmanagementbackend.dto.ReservationDto;
 import org.hotelmanagement.hotelmanagementbackend.entity.ReservationEntity;
 import org.hotelmanagement.hotelmanagementbackend.exception.NotFoundException;
+import org.hotelmanagement.hotelmanagementbackend.exception.ReservationAlreadyExists;
 import org.hotelmanagement.hotelmanagementbackend.mapper.ReservationMapper;
 import org.hotelmanagement.hotelmanagementbackend.repository.ReservationResponse;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -24,10 +26,9 @@ public class ReservationService {
         boolean checkReservedRoom = isHaveReservedRoom(reservationDto.getRoomNumber());
 
         if (checkReservedRoom &&  checkReservationDate){
-
+            log.error("Action.createReservation.error for name {}", reservationDto.getClientFirstName());
+            throw new ReservationAlreadyExists("This Reservation Already Exits");
         }
-
-
         ReservationEntity reservationEntity = ReservationMapper.INSTANCE.toEntity(reservationDto);
         reservationResponse.save(reservationEntity);
         log.info("Action.createReservation.end for name {}",reservationDto.getClientFirstName());
@@ -60,11 +61,13 @@ public class ReservationService {
 
     public boolean isHaveReservationDate(LocalDateTime localDateTime){
         log.info("Action.isHaveReservationDate.start for date {}", localDateTime);
-        List<LocalDateTime> roomNumbers = reservationResponse.findAllReservationDate();
+
+        List<LocalDateTime> reservationDates = reservationResponse.findAllReservationDate();
 
         log.info("Actions");
-        boolean isHave = roomNumbers.stream()
-                .noneMatch(localDateTime1 -> localDateTime1.equals(localDateTime));
+        boolean isHave = reservationDates.stream()
+                .noneMatch(date -> date.toLocalDate().equals(localDateTime.toLocalDate()));
+
         if (isHave){
             log.info("Actions.isHaveReservationDate.end for date {}", localDateTime);
             return false;
@@ -72,6 +75,7 @@ public class ReservationService {
         log.info("Action.isHaveReservationDate.end for date {}", localDateTime);
         return true;
     }
+
     public boolean isHaveReservedRoom(int roomNumber){
         log.info("Action.isHaveReservedRoom.start for room number {}", roomNumber);
         List<Integer> roomNumbers = reservationResponse.findAllReservedRooms();
@@ -84,9 +88,5 @@ public class ReservationService {
         }
         log.info("Action.isHaveReservedRoom.end for room number {}", roomNumber);
         return true;
-    }
-
-    public void foundCheckOutDate(int stayDuration){
-
     }
 }

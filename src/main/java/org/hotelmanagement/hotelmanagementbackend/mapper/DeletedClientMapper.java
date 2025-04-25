@@ -15,7 +15,7 @@ public interface DeletedClientMapper {
     @Mapping(target = "id", ignore = true)
     DeletedClientEntity dtoToDeletedClient(ClientDto clientDto);
 
-    @Mapping(target = "id", ignore = true)
+//    @Mapping(target = "id", ignore = true)
     DeletedClientEntity entityToDeletedClient(ClientEntity clientEntity);
 
 }

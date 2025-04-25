@@ -6,13 +6,16 @@ import lombok.extern.slf4j.Slf4j;
 import org.hotelmanagement.hotelmanagementbackend.dto.ClientDto;
 import org.hotelmanagement.hotelmanagementbackend.entity.ClientEntity;
 import org.hotelmanagement.hotelmanagementbackend.exception.NotFoundException;
+import org.hotelmanagement.hotelmanagementbackend.exception.ReservationAlreadyExists;
 import org.hotelmanagement.hotelmanagementbackend.mapper.ClientMapper;
 import org.hotelmanagement.hotelmanagementbackend.mapper.DeletedClientMapper;
 import org.hotelmanagement.hotelmanagementbackend.repository.ClientRepository;
 import org.hotelmanagement.hotelmanagementbackend.repository.DeletedClientRepository;
 import org.hotelmanagement.hotelmanagementbackend.repository.RoomRepository;
+import org.springframework.aop.AopInvocationException;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -23,10 +26,18 @@ public class ClientService {
     private final RoomService roomService;
     private final DeletedClientRepository deletedClientRepository;
     private final RoomRepository roomRepository;
+    private final ReservationService reservationService;
 
     public void createClient(ClientDto clientDto){
         log.info("Action.createClient.start for name {}", clientDto.getFirstName());
-        clientDto.setRoomNumber(roomService.findEmtyRoom());
+        if (isReserved(clientDto.getCheck_in(),clientDto.getRoomNumber())) {
+            throw new ReservationAlreadyExists("This Room or Date is Reserved");
+        }
+        try {
+            clientDto.setRoomNumber(roomService.findEmtyRoom());
+        } catch (Exception e) {
+            throw new NotFoundException("Not Found Empty Room");
+        }
         ClientEntity clientEntity = ClientMapper.INSTANCE.toEntity(clientDto);
         clientRepository.save(clientEntity);
         log.info("Action.createClient.end for name {}", clientDto.getFirstName());
@@ -64,6 +75,15 @@ public class ClientService {
         log.info("Action.deleteClientById.end for id {}", id);
     }
 
+    public boolean isReserved(LocalDateTime localDateTime, int roomNumber){
+      var reservationDate = reservationService.isHaveReservationDate(localDateTime);
+      var reservedRoom = reservationService.isHaveReservedRoom(roomNumber);
+
+      if (reservedRoom || reservationDate){
+          return true;
+      }
+      return false;
+    }
 
 
 

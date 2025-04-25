@@ -17,7 +17,7 @@ public class ReservationController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void create(ReservationDto reservationDto){
+    public void create(@RequestBody ReservationDto reservationDto){
         reservationService.createReservation(reservationDto);
     }
 
