@@ -18,5 +18,5 @@ public class ReservationDto {
     private String clientLastName;
     private LocalDateTime reservationDate;
     private int roomNumber;
-    private ClientEntity client;
+    private ClientDto client;
 }

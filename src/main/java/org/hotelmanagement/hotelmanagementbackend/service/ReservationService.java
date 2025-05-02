@@ -19,6 +19,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ReservationService {
     private final ReservationResponse reservationResponse;
+    private final ClientService clientService;
 
     public void createReservation(ReservationDto reservationDto){
         log.info("Action.createReservation for name {}", reservationDto.getClientFirstName());
@@ -31,6 +32,7 @@ public class ReservationService {
         }
         ReservationEntity reservationEntity = ReservationMapper.INSTANCE.toEntity(reservationDto);
         reservationResponse.save(reservationEntity);
+        clientService.createClient(reservationDto.getClient());
         log.info("Action.createReservation.end for name {}",reservationDto.getClientFirstName());
     }
 
