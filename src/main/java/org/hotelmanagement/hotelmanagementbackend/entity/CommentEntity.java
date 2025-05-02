@@ -5,36 +5,36 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hotelmanagement.hotelmanagementbackend.enums.RoomType;
 
 import java.util.Objects;
 
 @Entity
-@Table(name = "rooms")
+@Table(name = "comments")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class RoomEntity {
+public class CommentEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column
-    private int roomNumber;
-    @Column
-    @Enumerated(EnumType.STRING)
-    private RoomType roomType;
-    @Column
-    private boolean isAvailable;
-    @Column
-    private int pricePerNight;
+    private String comment;
+
+//    @Column()
+//    private Long clientId;
+
+    @OneToOne
+    @JoinColumn(name = "client_id")
+    private ClientEntity client;
+
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        RoomEntity that = (RoomEntity) o;
+        CommentEntity that = (CommentEntity) o;
         return Objects.equals(id, that.id);
     }
 

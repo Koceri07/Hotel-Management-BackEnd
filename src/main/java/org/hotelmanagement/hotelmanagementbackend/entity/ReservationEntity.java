@@ -31,6 +31,9 @@ public class ReservationEntity {
     @Column
     private int stayDuration;
 
+    @ManyToOne
+    @JoinColumn(name = "client_id")
+    private ClientEntity client;
 
     @Override
     public boolean equals(Object o) {

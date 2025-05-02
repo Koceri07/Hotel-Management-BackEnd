@@ -6,6 +6,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hotelmanagement.hotelmanagementbackend.enums.Wristband;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -27,7 +28,8 @@ public class ClientEntity {
     @Column
     private String fincode;
     @Column
-    private String wristband;
+    @Enumerated(EnumType.STRING)
+    private Wristband wristband;
     @Column
     private int roomNumber;
     @Column
@@ -39,9 +41,20 @@ public class ClientEntity {
     @Column
     private boolean isActive;
 
-
     @CreationTimestamp
     private LocalDateTime createAt;
+
+//    @OneToMany
+//    @JoinColumn(name = "reservation_id")
+//    private List<ReservationEntity> reservations;
+
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
+    private List<ReservationEntity> reservations;
+
+
+//    @OneToOne
+//    private CommentEntity comment;
+
 
 
     @Override

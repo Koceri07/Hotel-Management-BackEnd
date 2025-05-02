@@ -13,6 +13,9 @@ databaseChangeLog:
                   constraints:
                     primaryKey: true
               - column:
+                  name: client_id
+                  type: bigint
+              - column:
                   name: client_first_name
                   type: varchar(16)
               - column:
