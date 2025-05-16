@@ -2,8 +2,7 @@ package org.hotelmanagement.hotelmanagementbackend.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.hotelmanagement.hotelmanagementbackend.dto.CommentDto;
-import org.hotelmanagement.hotelmanagementbackend.entity.CommentEntity;
+import org.hotelmanagement.hotelmanagementbackend.model.dto.CommentDto;
 import org.hotelmanagement.hotelmanagementbackend.exception.NotFoundException;
 import org.hotelmanagement.hotelmanagementbackend.mapper.CommentMapper;
 import org.hotelmanagement.hotelmanagementbackend.repository.ClientRepository;

@@ -1,4 +1,4 @@
-package org.hotelmanagement.hotelmanagementbackend.dto;
+package org.hotelmanagement.hotelmanagementbackend.model.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

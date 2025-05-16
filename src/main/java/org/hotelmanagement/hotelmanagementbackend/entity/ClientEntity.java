@@ -3,7 +3,7 @@ package org.hotelmanagement.hotelmanagementbackend.entity;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hotelmanagement.hotelmanagementbackend.enums.Wristband;
+import org.hotelmanagement.hotelmanagementbackend.model.enums.Wristband;
 
 import java.time.LocalDateTime;
 import java.util.List;

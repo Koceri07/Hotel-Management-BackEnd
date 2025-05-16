@@ -1,7 +1,7 @@
 package org.hotelmanagement.hotelmanagementbackend.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.hotelmanagement.hotelmanagementbackend.dto.RoomDto;
+import org.hotelmanagement.hotelmanagementbackend.model.dto.RoomDto;
 import org.hotelmanagement.hotelmanagementbackend.service.RoomService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

@@ -1,14 +1,12 @@
-package org.hotelmanagement.hotelmanagementbackend.dto;
+package org.hotelmanagement.hotelmanagementbackend.model.dto;
 
-import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.validator.constraints.Length;
 import org.hotelmanagement.hotelmanagementbackend.entity.ReservationEntity;
-import org.hotelmanagement.hotelmanagementbackend.enums.Wristband;
+import org.hotelmanagement.hotelmanagementbackend.model.enums.Wristband;
 import org.hotelmanagement.hotelmanagementbackend.validation.RoomNumber;
 
 import java.time.LocalDateTime;

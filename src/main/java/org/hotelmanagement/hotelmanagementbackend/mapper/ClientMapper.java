@@ -1,9 +1,8 @@
 package org.hotelmanagement.hotelmanagementbackend.mapper;
 
-import org.hotelmanagement.hotelmanagementbackend.dto.ClientDto;
+import org.hotelmanagement.hotelmanagementbackend.model.dto.ClientDto;
 import org.hotelmanagement.hotelmanagementbackend.entity.ClientEntity;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
 @Mapper

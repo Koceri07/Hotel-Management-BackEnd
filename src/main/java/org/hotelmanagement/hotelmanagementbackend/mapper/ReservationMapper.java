@@ -1,9 +1,8 @@
 package org.hotelmanagement.hotelmanagementbackend.mapper;
 
-import org.hotelmanagement.hotelmanagementbackend.dto.ReservationDto;
+import org.hotelmanagement.hotelmanagementbackend.model.dto.ReservationDto;
 import org.hotelmanagement.hotelmanagementbackend.entity.ReservationEntity;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
 @Mapper

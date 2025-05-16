@@ -1,4 +1,4 @@
-package org.hotelmanagement.hotelmanagementbackend.enums;
+package org.hotelmanagement.hotelmanagementbackend.model.enums;
 
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;

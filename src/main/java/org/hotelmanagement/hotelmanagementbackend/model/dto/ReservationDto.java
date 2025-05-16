@@ -1,10 +1,8 @@
-package org.hotelmanagement.hotelmanagementbackend.dto;
+package org.hotelmanagement.hotelmanagementbackend.model.dto;
 
-import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hotelmanagement.hotelmanagementbackend.entity.ClientEntity;
 
 import java.time.LocalDateTime;
 

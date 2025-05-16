@@ -1,6 +1,6 @@
 package org.hotelmanagement.hotelmanagementbackend.mapper;
 
-import org.hotelmanagement.hotelmanagementbackend.dto.ClientDto;
+import org.hotelmanagement.hotelmanagementbackend.model.dto.ClientDto;
 import org.hotelmanagement.hotelmanagementbackend.entity.ClientEntity;
 
 import org.hotelmanagement.hotelmanagementbackend.entity.DeletedClientEntity;
@@ -12,7 +12,7 @@ import org.mapstruct.factory.Mappers;
 public interface DeletedClientMapper {
     DeletedClientMapper INSTANCE = Mappers.getMapper(DeletedClientMapper.class);
 
-    @Mapping(target = "id", ignore = true)
+//    @Mapping(target = "id", ignore = true)
     DeletedClientEntity dtoToDeletedClient(ClientDto clientDto);
 
 //    @Mapping(target = "id", ignore = true)

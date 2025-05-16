@@ -1,9 +1,9 @@
-package org.hotelmanagement.hotelmanagementbackend.dto;
+package org.hotelmanagement.hotelmanagementbackend.model.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hotelmanagement.hotelmanagementbackend.enums.RoomType;
+import org.hotelmanagement.hotelmanagementbackend.model.enums.RoomType;
 import org.hotelmanagement.hotelmanagementbackend.validation.RoomNumber;
 
 @Data

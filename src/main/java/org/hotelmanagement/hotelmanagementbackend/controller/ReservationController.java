@@ -1,7 +1,7 @@
 package org.hotelmanagement.hotelmanagementbackend.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.hotelmanagement.hotelmanagementbackend.dto.ReservationDto;
+import org.hotelmanagement.hotelmanagementbackend.model.dto.ReservationDto;
 import org.hotelmanagement.hotelmanagementbackend.service.ReservationService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -38,7 +38,7 @@ public class ReservationController {
 
     @GetMapping("/{localDateTime}")
     public void checkReservation(@PathVariable LocalDateTime localDateTime){
-        reservationService.isHaveReservationDate(localDateTime);
+        reservationService.isHaveReservationDateFactory(localDateTime);
     }
 
 }
