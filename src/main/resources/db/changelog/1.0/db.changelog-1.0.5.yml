@@ -1,0 +1,44 @@
+databaseChangeLog:
+  - changeSet:
+      id: 001-create-mail-table
+      author: Koceri07
+      changes:
+        - createTable:
+            tableName: mail
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+
+              - column:
+                  name: mail_from
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: mail_to
+                  type: VARCHAR(1024)
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: subject
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: text
+                  type: TEXT
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: sent_at
+                  type: TIMESTAMP
+                  defaultValueComputed: CURRENT_TIMESTAMP
