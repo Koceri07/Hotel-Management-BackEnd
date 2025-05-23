@@ -1,0 +1,11 @@
+databaseChangeLog:
+  - changeSet:
+      id: fk-comments-client
+      author: Koceri07
+      changes:
+        - addForeignKeyConstraint:
+            baseTableName: comments
+            baseColumnNames: client_id
+            constraintName: fk_comment_client
+            referencedTableName: clients
+            referencedColumnNames: id

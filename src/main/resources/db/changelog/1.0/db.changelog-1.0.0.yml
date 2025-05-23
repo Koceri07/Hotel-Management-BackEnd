@@ -1,7 +1,12 @@
 databaseChangeLog:
   - changeSet:
-      id: create client table
+      id: create-clients-table
       author: Koceri07
+      runOnChange: true
+      preConditions:
+        - not:
+            tableExists:
+              tableName: clients
       changes:
         - createTable:
             tableName: clients
@@ -12,34 +17,40 @@ databaseChangeLog:
                   autoIncrement: true
                   constraints:
                     primaryKey: true
-
+                    nullable: false
               - column:
                   name: first_name
-                  type: varchar(16)
+                  type: VARCHAR(255)
               - column:
                   name: last_name
-                  type: varchar(32)
+                  type: VARCHAR(255)
               - column:
                   name: fincode
-                  type: varchar(32)
+                  type: VARCHAR(255)
               - column:
                   name: wristband
-                  type: varchar(32)
+                  type: VARCHAR(50)  # enum stored as string
               - column:
                   name: room_number
-                  type: BIGINT
+                  type: INT
               - column:
                   name: reservation_status
-                  type: boolean
+                  type: BOOLEAN
               - column:
                   name: stay_duration
-                  type: BIGINT
+                  type: INT
               - column:
                   name: check_in
                   type: TIMESTAMP
               - column:
                   name: is_active
-                  type: boolean
+                  type: BOOLEAN
+              - column:
+                  name: email
+                  type: VARCHAR(255)
+#              - column:
+#                  name: comment_id
+#                  type: BIGINT
               - column:
                   name: create_at
                   type: TIMESTAMP

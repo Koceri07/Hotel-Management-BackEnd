@@ -1,0 +1,11 @@
+databaseChangeLog:
+  - changeSet:
+      id: fk-reservations-mail
+      author: Koceri07
+      changes:
+        - addForeignKeyConstraint:
+            baseTableName: reservations
+            baseColumnNames: mail_id
+            constraintName: fk_reservation_mail
+            referencedTableName: mails
+            referencedColumnNames: id

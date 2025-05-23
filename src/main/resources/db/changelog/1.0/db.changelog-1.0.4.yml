@@ -1,7 +1,7 @@
 ##Bismillah
 databaseChangeLog:
   - changeSet:
-      id: creat comments table
+      id: create_comments_table
       author: Koceri07
       changes:
         - createTable:
@@ -19,3 +19,4 @@ databaseChangeLog:
               - column:
                   name: client_id
                   type: bigint
+

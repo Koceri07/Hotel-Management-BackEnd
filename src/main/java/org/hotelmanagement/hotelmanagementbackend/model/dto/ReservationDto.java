@@ -17,4 +17,5 @@ public class ReservationDto {
     private LocalDateTime reservationDate;
     private int roomNumber;
     private ClientDto client;
+    private MailDto mailDto;
 }

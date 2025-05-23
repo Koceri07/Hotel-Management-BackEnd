@@ -40,6 +40,10 @@ public class ClientEntity {
     private LocalDateTime check_in;
     @Column
     private boolean isActive;
+    @Column
+    private String email;
+//    @Column
+//    private Long commentId;
 
     @CreationTimestamp
     private LocalDateTime createAt;
@@ -49,11 +53,15 @@ public class ClientEntity {
 //    private List<ReservationEntity> reservations;
 
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
+//    @JoinColumn(name = "reservation_id")
     private List<ReservationEntity> reservations;
 
 
-//    @OneToOne
-//    private CommentEntity comment;
+    @OneToOne(mappedBy = "client", cascade = CascadeType.ALL)
+//    @JoinColumn(name = "comment_id")
+    private CommentEntity comment;
+
+
 
 
 

@@ -9,8 +9,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class MailDto {
     private Long id;
-    private String from;
-    private String[] to;
+    private String mailFrom;
+    private String[] mailTo;
     private String subject;
     private String text;
+    private ReservationDto reservationDto;
+
 }

@@ -1,10 +1,16 @@
 databaseChangeLog:
   - changeSet:
-      id: 001-create-mail-table
+      id: create-mail-table
       author: Koceri07
+      runOnChange: true
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            tableExists:
+              tableName: mails
       changes:
         - createTable:
-            tableName: mail
+            tableName: mails
             columns:
               - column:
                   name: id
@@ -39,6 +45,11 @@ databaseChangeLog:
                     nullable: false
 
               - column:
-                  name: sent_at
+                  name: send_at
                   type: TIMESTAMP
                   defaultValueComputed: CURRENT_TIMESTAMP
+
+              - column:
+                  name: reservation_id
+                  type: BIGINT
+

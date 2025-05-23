@@ -2,6 +2,8 @@ package org.hotelmanagement.hotelmanagementbackend.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.hotelmanagement.hotelmanagementbackend.exception.NotFoundException;
+import org.hotelmanagement.hotelmanagementbackend.mapper.MailMapper;
 import org.hotelmanagement.hotelmanagementbackend.model.dto.MailDto;
 import org.hotelmanagement.hotelmanagementbackend.repository.MailRepository;
 import org.springframework.mail.SimpleMailMessage;
@@ -9,7 +11,6 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Slf4j
 @Service
@@ -20,25 +21,32 @@ public class MailService {
 
     public void sendMail(MailDto mailDto){
         SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
-        simpleMailMessage.setFrom(mailDto.getFrom());
-        simpleMailMessage.setTo(mailDto.getTo());
+        simpleMailMessage.setFrom(mailDto.getMailFrom());
+        simpleMailMessage.setTo(mailDto.getMailTo());
         simpleMailMessage.setSubject(mailDto.getSubject());
         simpleMailMessage.setText(mailDto.getText());
 
-        mailRepository.save(mailDto);
+        var mailEntity = MailMapper.INSTANCE.toEntity(mailDto);
+
+        mailRepository.save(mailEntity);
         javaMailSender.send(simpleMailMessage);
     }
 
-    public Optional<MailDto> getMail(Long id){
+    public MailDto getMail(Long id){
         log.info("Action.getMail.start for id {}", id);
-        Optional<MailDto> mail = mailRepository.findById(id);
+        var mail = mailRepository.findById(id)
+                        .orElseThrow(() -> new NotFoundException("Id Not Found"));
+        var mailDto = MailMapper.INSTANCE.toDto(mail);
+
         log.info("Action.getMail.end for id {}",id);
-        return mail;
+        return mailDto;
     }
 
     public List<MailDto> getAllMails(){
         log.info("Action.getAllMails.start");
-        List<MailDto> mails = mailRepository.findAll();
+        List<MailDto> mails = mailRepository.findAll()
+                        .stream().map(MailMapper.INSTANCE::toDto)
+                        .toList();
         log.info("Action.getAllMails.end");
         return mails;
     }

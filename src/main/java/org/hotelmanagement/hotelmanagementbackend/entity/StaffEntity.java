@@ -5,27 +5,22 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.CreationTimestamp;
-
-import java.time.LocalDateTime;
+import org.hotelmanagement.hotelmanagementbackend.model.enums.Possitions;
 
 @Entity
-@Table(name = "mails")
+@Table(name = "staffs")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class MailEntity {
+public class StaffEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String mailFrom;
-    private String  mailTo;
-    private String subject;
-    private String text;
+    private String firstName;
+    private String lastName;
+    private Possitions possitions;
+    private String phoneNumber;
 
-    @CreationTimestamp
-    @Column
-    private LocalDateTime sendAt;
 }

@@ -1,3 +1,17 @@
 databaseChangeLog:
   - includeAll:
       path: db/changelog/1.0
+  - includeAll:
+      path: db/changelog/1.1
+#  - include:
+#      file: db/changelog/1.0/db.changelog-1.0.0.yml
+#  - include:
+#      file: db/changelog/1.0/db.changelog-1.0.1.yml
+#  - include:
+#      file: db/changelog/1.0/db.changelog-1.0.2.yml
+#  - include:
+#      file: db/changelog/1.0/db.changelog-1.0.5.yml
+#  - include:
+#      file: db/changelog/1.0/db.changelog-1.0.4.yml
+#  - include:
+#      file: db/changelog/1.0/db.changelog-1.0.3.yml

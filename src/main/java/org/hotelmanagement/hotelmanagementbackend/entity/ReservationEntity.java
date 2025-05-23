@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hotelmanagement.hotelmanagementbackend.model.dto.MailDto;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
@@ -31,9 +32,12 @@ public class ReservationEntity {
     @Column
     private int stayDuration;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "client_id")
     private ClientEntity client;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    private MailEntity mail;
 
     @Override
     public boolean equals(Object o) {

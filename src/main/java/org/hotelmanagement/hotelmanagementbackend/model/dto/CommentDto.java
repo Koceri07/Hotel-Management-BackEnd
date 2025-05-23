@@ -12,4 +12,5 @@ public class CommentDto {
     private Long id;
     private String comment;
     private Long clientId;
+    private ClientDto clientDto;
 }

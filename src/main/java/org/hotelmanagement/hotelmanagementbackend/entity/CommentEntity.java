@@ -21,7 +21,7 @@ public class CommentEntity {
 
     @Column
     private String comment;
-
+//
 //    @Column()
 //    private Long clientId;
 

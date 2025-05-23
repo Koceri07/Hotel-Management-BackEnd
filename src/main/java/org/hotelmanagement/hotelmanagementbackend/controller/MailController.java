@@ -6,7 +6,6 @@ import org.hotelmanagement.hotelmanagementbackend.service.MailService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/v1/mail-sender")
@@ -20,7 +19,7 @@ public class MailController {
     }
 
     @GetMapping("/{id}")
-    public Optional<MailDto> getById(@PathVariable Long id){
+    public MailDto getById(@PathVariable Long id){
         return mailService.getMail(id);
     }
 
