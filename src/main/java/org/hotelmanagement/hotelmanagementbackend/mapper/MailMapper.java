@@ -11,7 +11,7 @@ public interface MailMapper {
 
     MailMapper INSTANCE = Mappers.getMapper(MailMapper.class);
 
-//    @Mapping(target = "id", source = "id", ignore = true)
+//    @Mapping(target = "id",ignore = true)
     MailDto toDto(MailEntity mailEntity);
 
 //    @Mapping(target = "id",ignore = true)

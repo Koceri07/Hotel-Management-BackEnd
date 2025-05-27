@@ -1,33 +1,25 @@
-package org.hotelmanagement.hotelmanagementbackend.entity;
+package org.hotelmanagement.hotelmanagementbackend.model.dto;
 
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import org.hotelmanagement.hotelmanagementbackend.model.enums.Possitions;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-@Entity
-@Table(name = "staffs")
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class StaffEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class StaffDto {
     private Long id;
 
     private String firstName;
     private String lastName;
-    @Enumerated(EnumType.STRING)
     private Possitions possitions;
     private String phoneNumber;
-    private String email;
     private BigDecimal salary;
+    private String email;
     private LocalDateTime hireDate;
-
 }
+

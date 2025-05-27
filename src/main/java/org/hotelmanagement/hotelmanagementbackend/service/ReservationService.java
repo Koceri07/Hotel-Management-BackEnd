@@ -8,6 +8,7 @@ import org.hotelmanagement.hotelmanagementbackend.exception.NotFoundException;
 import org.hotelmanagement.hotelmanagementbackend.exception.ReservationAlreadyExists;
 import org.hotelmanagement.hotelmanagementbackend.mapper.ReservationMapper;
 import org.hotelmanagement.hotelmanagementbackend.model.factory.CheckFactory;
+import org.hotelmanagement.hotelmanagementbackend.model.response.ApiResponse;
 import org.hotelmanagement.hotelmanagementbackend.repository.ReservationResponse;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -40,23 +41,25 @@ public class ReservationService implements CheckFactory{
         log.info("Action.createReservation.end for name {}",reservationDto.getClientFirstName());
     }
 
-    public ReservationDto getReservationById(Long id){
+    public ApiResponse getReservationById(Long id){
         log.info("Action.getReservationById.start for id {}",id);
         var reservationEntity = reservationResponse.findById(id)
                 .orElseThrow(() -> new NotFoundException("Id Not Found"));
         var reservationDto = ReservationMapper.INSTANCE.toDto(reservationEntity);
+        ApiResponse apiResponse = new ApiResponse(reservationDto);
         log.info("Action.getReservationById.end for id {}",id);
-        return reservationDto;
+        return apiResponse;
     }
 
-    public List<ReservationDto> getAllReservations(){
+    public ApiResponse getAllReservations(){
         log.info("Action.getAllReservations.start");
         var reservationDto = reservationResponse.findAll()
                 .stream()
                 .map(ReservationMapper.INSTANCE::toDto)
                 .toList();
+        ApiResponse apiResponse = new ApiResponse(reservationDto);
         log.info("Action.getAllReservations.end");
-        return reservationDto;
+        return apiResponse;
     }
 
     public void deleteReservationById(Long id){
@@ -129,7 +132,4 @@ public class ReservationService implements CheckFactory{
         log.info("Action.isHaveReservationDate.end for date {}", localDateTime);
         return true;
     }
-
-
-
 }

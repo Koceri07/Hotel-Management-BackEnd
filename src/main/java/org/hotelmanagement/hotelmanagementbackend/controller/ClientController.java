@@ -2,6 +2,7 @@ package org.hotelmanagement.hotelmanagementbackend.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.hotelmanagement.hotelmanagementbackend.model.dto.ClientDto;
+import org.hotelmanagement.hotelmanagementbackend.model.response.ApiResponse;
 import org.hotelmanagement.hotelmanagementbackend.service.ClientService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -22,12 +23,12 @@ public class ClientController {
     }
 
     @GetMapping
-    public List<ClientDto> getAll(){
+    public ApiResponse getAll(){
         return clientService.getAllClients();
     }
 
     @GetMapping("/{id}")
-    public ClientDto getById(@PathVariable Long id){
+    public ApiResponse getById(@PathVariable Long id){
         return clientService.getClientById(id);
     }
 

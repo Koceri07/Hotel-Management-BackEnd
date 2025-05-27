@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import org.hotelmanagement.hotelmanagementbackend.model.enums.RoomType;
 import org.hotelmanagement.hotelmanagementbackend.validation.RoomNumber;
 
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -15,4 +17,5 @@ public class RoomDto {
     private RoomType roomType;
     private boolean isAvailable;
     private int pricePerNight;
+    private List<MarketItemDto> items;
 }

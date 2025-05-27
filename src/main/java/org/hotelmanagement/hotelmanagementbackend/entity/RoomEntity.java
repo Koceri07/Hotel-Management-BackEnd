@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hotelmanagement.hotelmanagementbackend.model.enums.RoomType;
 
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -29,6 +30,9 @@ public class RoomEntity {
     private boolean isAvailable;
     @Column
     private int pricePerNight;
+
+    @OneToMany(fetch = FetchType.LAZY)
+    private List<MarketItemEntity> items;
 
     @Override
     public boolean equals(Object o) {

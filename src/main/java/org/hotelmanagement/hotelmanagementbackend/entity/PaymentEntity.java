@@ -6,29 +6,32 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.cglib.core.Local;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Entity
-@Table(name = "mails")
+@Table(name = "payments")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class MailEntity {
+public class PaymentEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String mailFrom;
-    @ElementCollection
-    @CollectionTable(name = "mail_entity_mail_to", joinColumns = @JoinColumn(name = "mail_entity_id"))
-    private List<String> mailTo;
-    private String subject;
-    private String text;
+    private String cartNumber;
+    private LocalDateTime expirationDate;
+    private String cvv;
+    private BigDecimal amount;
 
     @CreationTimestamp
-//    @Column
-    private LocalDateTime sendAt;
+    private LocalDateTime createAt;
+
+    @UpdateTimestamp
+    private LocalDateTime updateAt;
 }

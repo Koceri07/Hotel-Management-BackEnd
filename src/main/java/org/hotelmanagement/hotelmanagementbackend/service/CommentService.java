@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.hotelmanagement.hotelmanagementbackend.model.dto.CommentDto;
 import org.hotelmanagement.hotelmanagementbackend.exception.NotFoundException;
 import org.hotelmanagement.hotelmanagementbackend.mapper.CommentMapper;
+import org.hotelmanagement.hotelmanagementbackend.model.response.ApiResponse;
 import org.hotelmanagement.hotelmanagementbackend.repository.ClientRepository;
 import org.hotelmanagement.hotelmanagementbackend.repository.CommentRepository;
 import org.springframework.stereotype.Service;
@@ -25,23 +26,25 @@ public class CommentService {
         log.info("Action.createComment.end for client id {}", commentDto.getClientId());
     }
 
-    public List<CommentDto> getAllComments(){
+    public ApiResponse getAllComments(){
         log.info("Action.getAllComments.start");
         var comments = commentRepository.findAll()
                 .stream()
                 .map(CommentMapper.INSTANCE::toDto)
                 .toList();
+        ApiResponse apiResponse = new ApiResponse(comments);
         log.info("Action.getAllComments.end");
-        return comments;
+        return apiResponse;
     }
 
-    public CommentDto getCommentById(Long id){
+    public ApiResponse getCommentById(Long id){
         log.info("Action.getCommentById.start for id {}",id);
         var comment = commentRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Id Not Found"));
         var commentDto = CommentMapper.INSTANCE.toDto(comment);
+        ApiResponse apiResponse = new ApiResponse(commentDto);
         log.info("Action.getCommentById.end for id {}",id);
-        return commentDto;
+        return apiResponse;
     }
 
     public void deleteCommentById(Long id){

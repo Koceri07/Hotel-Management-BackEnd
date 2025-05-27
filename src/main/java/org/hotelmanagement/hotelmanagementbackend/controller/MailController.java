@@ -2,6 +2,7 @@ package org.hotelmanagement.hotelmanagementbackend.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.hotelmanagement.hotelmanagementbackend.model.dto.MailDto;
+import org.hotelmanagement.hotelmanagementbackend.model.response.ApiResponse;
 import org.hotelmanagement.hotelmanagementbackend.service.MailService;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,12 +20,12 @@ public class MailController {
     }
 
     @GetMapping("/{id}")
-    public MailDto getById(@PathVariable Long id){
+    public ApiResponse getById(@PathVariable Long id){
         return mailService.getMail(id);
     }
 
     @GetMapping
-    public List<MailDto> getAll(){
+    public ApiResponse getAll(){
         return mailService.getAllMails();
     }
 

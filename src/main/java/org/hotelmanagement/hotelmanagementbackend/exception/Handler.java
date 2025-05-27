@@ -12,6 +12,12 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class Handler {
 
     @ExceptionHandler
+    public ResponseEntity<Error> StockEmptyException(StockEmptyException e){
+        log.error("Stock Is Empty");
+        return ResponseEntity.status(HttpStatus.INSUFFICIENT_STORAGE).body(new Error(e.getMessage(), "Stock Is Empty"));
+    }
+
+    @ExceptionHandler
     public ResponseEntity<Error> NotFoundException(NotFoundException e){
         log.error("Error for Not Found");
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new Error(e.getMessage(), "Not Found"));

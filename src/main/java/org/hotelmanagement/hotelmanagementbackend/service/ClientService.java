@@ -11,6 +11,7 @@ import org.hotelmanagement.hotelmanagementbackend.exception.ReservationAlreadyEx
 import org.hotelmanagement.hotelmanagementbackend.mapper.ClientMapper;
 import org.hotelmanagement.hotelmanagementbackend.mapper.DeletedClientMapper;
 import org.hotelmanagement.hotelmanagementbackend.model.factory.CheckFactory;
+import org.hotelmanagement.hotelmanagementbackend.model.response.ApiResponse;
 import org.hotelmanagement.hotelmanagementbackend.repository.ClientRepository;
 import org.hotelmanagement.hotelmanagementbackend.repository.DeletedClientRepository;
 import org.hotelmanagement.hotelmanagementbackend.repository.ReservationResponse;
@@ -30,6 +31,7 @@ public class ClientService implements CheckFactory {
     private final RoomService roomService;
     private final DeletedClientRepository deletedClientRepository;
     private final RoomRepository roomRepository;
+    private final MarketSaleService marketSaleService;
 
 
     public void createClient(ClientDto clientDto){
@@ -48,17 +50,41 @@ public class ClientService implements CheckFactory {
         log.info("Action.createClient.end for name {}", clientDto.getFirstName());
     }
 
-    public List<ClientDto> getAllClients(){
+    public ApiResponse getAllClients(){
         log.info("Action.getAllClients.start");
         List<ClientDto> clients =  clientRepository.findAll()
                 .stream()
                 .map(ClientMapper.INSTANCE::toDto)
                 .toList();
+        ApiResponse apiResponse = new ApiResponse(clients);
         log.info("Action.getAllClients.end");
-        return clients;
+        return apiResponse;
     }
 
-    public ClientDto getClientById(Long id){
+    public ApiResponse getClientById(Long id){
+        log.info("Action.getClientById.start for id {}", id);
+        var clientEntity =clientRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("Id Not Found"));
+        ClientDto clientDto = ClientMapper.INSTANCE.toDto(clientEntity);
+        ApiResponse apiResponse = new ApiResponse(clientDto);
+        log.info("Actionget.ClientById.end for id {}", id);
+        return apiResponse;
+    }
+
+    //
+    @Transactional
+    public void deleteClientById(Long id){
+        log.info("Action.deleteClientById.start for id {}", id);
+        var clientDto = getClientDtoById(id);
+        var deletedClient = DeletedClientMapper.INSTANCE.dtoToDeletedClient(clientDto);
+        deletedClientRepository.save(deletedClient);
+        var roomNumber = clientDto.getRoomNumber();
+        roomRepository.changeIsAvailableTrueWithId(roomNumber);
+        clientRepository.deleteById(id);
+        log.info("Action.deleteClientById.end for id {}", id);
+    }
+
+    public ClientDto getClientDtoById(Long id){
         log.info("Action.getClientById.start for id {}", id);
         var clientEntity =clientRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Id Not Found"));
@@ -67,23 +93,12 @@ public class ClientService implements CheckFactory {
         return clientDto;
     }
 
-    //
-    @Transactional
-    public void deleteClientById(Long id){
-        log.info("Action.deleteClientById.start for id {}", id);
-        var clientDto = getClientById(id);
-        var deletedClient = DeletedClientMapper.INSTANCE.dtoToDeletedClient(clientDto);
-        deletedClientRepository.save(deletedClient);
-        int roomNumber = clientDto.getRoomNumber();
-        roomRepository.changeIsAvailableTrueWithId(roomNumber);
-        clientRepository.deleteById(id);
-        log.info("Action.deleteClientById.end for id {}", id);
-    }
-
     @Transactional
     public void checkOut(Long id){
         log.info("Action.checkOut.start for id {}", id);
         clientRepository.deactivateClient(id);
+//        var roomNumber = getClientDtoById(id).getRoomNumber();
+//        marketSaleService.getTotalPrice(roomNumber);
         log.info("Action.checkOut.end for id {}", id);
     }
 

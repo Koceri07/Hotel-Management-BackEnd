@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.hotelmanagement.hotelmanagementbackend.model.dto.RoomDto;
 import org.hotelmanagement.hotelmanagementbackend.exception.NotFoundException;
 import org.hotelmanagement.hotelmanagementbackend.mapper.RoomMapper;
+import org.hotelmanagement.hotelmanagementbackend.model.response.ApiResponse;
 import org.hotelmanagement.hotelmanagementbackend.repository.RoomRepository;
 import org.springframework.stereotype.Service;
 
@@ -23,23 +24,25 @@ public class RoomService {
         log.info("Action.createRoom.end for room number {}", roomDto.getRoomNumber());
     }
 
-    public List<RoomDto> getAllRooms(){
+    public ApiResponse getAllRooms(){
         log.info("Action.getAllRooms.start");
         List<RoomDto> rooms = roomRepository.findAll()
                 .stream()
                 .map(RoomMapper.INSTANCE::toDto)
                 .toList();
+        ApiResponse apiResponse = new ApiResponse(rooms);
         log.info("Action.getAllRooms.end");
-        return rooms;
+        return apiResponse;
     }
 
-    public RoomDto getRoomById(Long id){
+    public ApiResponse getRoomById(Long id){
         log.info("Action.getRoomById.start for id {}", id);
         var roomEntity = roomRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Id Not Found"));
         var roomDto = RoomMapper.INSTANCE.toDto(roomEntity);
+        ApiResponse apiResponse = new ApiResponse(roomDto);
         log.info("Action.getRoomById.end for id {}", id);
-        return roomDto;
+        return apiResponse;
     }
 
     public void deleteRoomById(Long id){

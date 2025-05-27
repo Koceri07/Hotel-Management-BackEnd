@@ -6,29 +6,27 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Entity
-@Table(name = "mails")
+@Table(name = "minibar_items")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class MailEntity {
+public class MinibarItems {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String mailFrom;
-    @ElementCollection
-    @CollectionTable(name = "mail_entity_mail_to", joinColumns = @JoinColumn(name = "mail_entity_id"))
-    private List<String> mailTo;
-    private String subject;
-    private String text;
+    private String name;
+    private Double price;
 
     @CreationTimestamp
-//    @Column
-    private LocalDateTime sendAt;
+    private LocalDateTime createAt;
+
+    @UpdateTimestamp
+    private LocalDateTime updateAt;
 }

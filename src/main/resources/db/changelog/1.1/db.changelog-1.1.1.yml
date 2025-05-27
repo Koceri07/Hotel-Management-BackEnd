@@ -2,6 +2,11 @@ databaseChangeLog:
   - changeSet:
       id: fk-reservations-mail
       author: Koceri07
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            foreignKeyConstraintExists:
+              foreignKeyName: fk-reservations-mail
       changes:
         - addForeignKeyConstraint:
             baseTableName: reservations

@@ -4,16 +4,16 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class MailDto {
+public class PaymentDto {
     private Long id;
-    private String mailFrom;
-    private List<String> mailTo;
-    private String subject;
-    private String text;
-//    private ReservationDto reservationDto;
+    private String cartNumber;
+    private LocalDateTime expirationDate;
+    private String cvv;
+    private BigDecimal amount;
 }
