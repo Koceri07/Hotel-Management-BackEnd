@@ -16,13 +16,14 @@ import java.time.LocalDateTime;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class MinibarItems {
+public class MinibarItemEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
     private Double price;
+
 
     @CreationTimestamp
     private LocalDateTime createAt;
