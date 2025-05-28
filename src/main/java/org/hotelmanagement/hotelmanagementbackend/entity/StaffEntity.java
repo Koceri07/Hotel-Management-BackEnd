@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hotelmanagement.hotelmanagementbackend.model.enums.Possitions;
+import org.hotelmanagement.hotelmanagementbackend.model.enums.Positions;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -24,7 +24,7 @@ public class StaffEntity {
     private String firstName;
     private String lastName;
     @Enumerated(EnumType.STRING)
-    private Possitions possitions;
+    private Positions positions;
     private String phoneNumber;
     private String email;
     private BigDecimal salary;

@@ -3,7 +3,7 @@ package org.hotelmanagement.hotelmanagementbackend.model.dto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hotelmanagement.hotelmanagementbackend.model.enums.Possitions;
+import org.hotelmanagement.hotelmanagementbackend.model.enums.Positions;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -16,7 +16,7 @@ public class StaffDto {
 
     private String firstName;
     private String lastName;
-    private Possitions possitions;
+    private Positions positions;
     private String phoneNumber;
     private BigDecimal salary;
     private String email;

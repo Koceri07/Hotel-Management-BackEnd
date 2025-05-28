@@ -1,7 +1,7 @@
 package org.hotelmanagement.hotelmanagementbackend.model.enums;
 
-public enum Possitions {
-    RESEPTION,
+public enum Positions {
+    RECEPTION,
     HOUSEKEEPING,
     MANAGER
 }
