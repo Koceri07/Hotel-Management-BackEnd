@@ -47,3 +47,4 @@ databaseChangeLog:
               - column:
                   name: hire_date
                   type: TIMESTAMP
+

@@ -36,3 +36,4 @@ databaseChangeLog:
               - column:
                   name: update_at
                   type: TIMESTAMP
+
