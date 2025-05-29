@@ -1,5 +1,7 @@
 package org.hotelmanagement.hotelmanagementbackend.controller;
 
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.hotelmanagement.hotelmanagementbackend.model.dto.MailDto;
 import org.hotelmanagement.hotelmanagementbackend.model.response.ApiResponse;
@@ -11,6 +13,9 @@ import java.util.List;
 @RestController
 @RequestMapping("/v1/mail-sender")
 @RequiredArgsConstructor
+@OpenAPIDefinition(tags = {
+        @Tag(name = "Mail", description = "Mails operations")
+})
 public class MailController {
     private final MailService mailService;
 

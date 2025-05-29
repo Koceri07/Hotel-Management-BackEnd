@@ -1,5 +1,7 @@
 package org.hotelmanagement.hotelmanagementbackend.controller;
 
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.hotelmanagement.hotelmanagementbackend.model.dto.ClientDto;
 import org.hotelmanagement.hotelmanagementbackend.model.response.ApiResponse;
@@ -12,6 +14,9 @@ import java.util.List;
 @RestController()
 @RequestMapping("/v1/clients")
 @RequiredArgsConstructor
+@OpenAPIDefinition(tags = {
+        @Tag(name = "Clients", description = "Clients operations")
+})
 public class ClientController {
     private final ClientService clientService;
 

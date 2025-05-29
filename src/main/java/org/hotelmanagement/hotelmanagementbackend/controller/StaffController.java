@@ -1,9 +1,13 @@
 package org.hotelmanagement.hotelmanagementbackend.controller;
 
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.servers.Server;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.hotelmanagement.hotelmanagementbackend.model.dto.StaffDto;
 import org.hotelmanagement.hotelmanagementbackend.model.response.ApiResponse;
 import org.hotelmanagement.hotelmanagementbackend.service.StaffService;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,6 +15,9 @@ import java.util.List;
 @RestController
 @RequestMapping("/v1/staffs")
 @RequiredArgsConstructor
+@OpenAPIDefinition(servers = {@Server(url = "http://localhost:9999")},
+        tags = {@Tag(name = "Staffs", description = "Staff operations")
+})
 public class StaffController {
     private final StaffService staffService;
 

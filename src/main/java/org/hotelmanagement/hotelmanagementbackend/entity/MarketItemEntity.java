@@ -27,13 +27,11 @@ public class MarketItemEntity {
     private String itemName;
     private BigDecimal itemPrice;
     private Integer stock;
+    @Enumerated(EnumType.STRING)
     private ItemCategory itemCategory;
 
     @ManyToMany(mappedBy = "items")
     private List<MarketSaleEntity> sales;
-
-    @ManyToOne
-    private RoomEntity room;
 
     @CreationTimestamp
     private LocalDateTime createAt;

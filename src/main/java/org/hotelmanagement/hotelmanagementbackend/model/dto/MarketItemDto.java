@@ -19,5 +19,4 @@ public class MarketItemDto {
     @Positive
     private Integer stock;
     private ItemCategory itemCategory;
-    private RoomDto room;
 }

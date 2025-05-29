@@ -1,0 +1,38 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-market-items-table
+      author: Koceri07
+      changes:
+        - createTable:
+            tableName: market_items
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+
+              - column:
+                  name: item_name
+                  type: VARCHAR(255)
+
+              - column:
+                  name: item_price
+                  type: DECIMAL(19,2)
+
+              - column:
+                  name: stock
+                  type: INTEGER
+
+              - column:
+                  name: item_category
+                  type: VARCHAR(50)
+              - column:
+                  name: create_at
+                  type: TIMESTAMP
+
+              - column:
+                  name: update_at
+                  type: TIMESTAMP

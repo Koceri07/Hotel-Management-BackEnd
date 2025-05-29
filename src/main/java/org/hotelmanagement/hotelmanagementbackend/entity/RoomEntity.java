@@ -31,8 +31,8 @@ public class RoomEntity {
     @Column
     private int pricePerNight;
 
-    @OneToMany(fetch = FetchType.LAZY)
-    private List<MarketItemEntity> items;
+//    @OneToMany(fetch = FetchType.LAZY)
+//    private List<MarketItemEntity> items;
 
     @Override
     public boolean equals(Object o) {

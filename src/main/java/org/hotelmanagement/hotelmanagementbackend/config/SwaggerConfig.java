@@ -10,7 +10,11 @@ public class SwaggerConfig {
     @Bean
     public OpenAPI customOpenApi(){
         return new OpenAPI()
-                .info(new io.swagger.v3.oas.models.info.Info())
-
+                .info(new Info()
+                        .title("Sənin API Adın")
+                        .description("Bu API haqqında qısa təsvir")
+                        .version("1.0.0")
+                        .description("API documention for Hotel Management")
+                );
     }
 }

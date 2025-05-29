@@ -1,5 +1,7 @@
 package org.hotelmanagement.hotelmanagementbackend.controller;
 
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.hotelmanagement.hotelmanagementbackend.model.dto.MarketItemDto;
 import org.hotelmanagement.hotelmanagementbackend.model.dto.MarketSaleDto;
@@ -11,6 +13,9 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("v1/market-sales")
 @RequiredArgsConstructor
+@OpenAPIDefinition(tags = {
+        @Tag(name = "Market Sale", description = "Market Sale operations")
+})
 public class MarketSaleController {
     private final MarketSaleService marketSaleService;
 

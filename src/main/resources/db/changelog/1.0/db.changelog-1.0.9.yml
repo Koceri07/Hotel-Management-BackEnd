@@ -1,10 +1,10 @@
 databaseChangeLog:
   - changeSet:
-      id: create-staffs-table
+      id: create_minibar_items_table
       author: Koceri07
       changes:
         - createTable:
-            tableName: staffs
+            tableName: minibar_items
             columns:
               - column:
                   name: id
@@ -13,37 +13,24 @@ databaseChangeLog:
                   constraints:
                     primaryKey: true
                     nullable: false
-
               - column:
-                  name: first_name
+                  name: name
                   type: VARCHAR(255)
                   constraints:
                     nullable: false
-
               - column:
-                  name: last_name
-                  type: VARCHAR(255)
+                  name: price
+                  type: DOUBLE PRECISION
                   constraints:
                     nullable: false
-
               - column:
-                  name: positions
-                  type: VARCHAR(50)
-                  constraints:
-                    nullable: false
-
-              - column:
-                  name: phone_number
-                  type: VARCHAR(20)
-
-              - column:
-                  name: email
-                  type: VARCHAR(255)
-
-              - column:
-                  name: salary
-                  type: DECIMAL(10,2)
-
-              - column:
-                  name: hire_date
+                  name: create_at
                   type: TIMESTAMP
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: update_at
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: false

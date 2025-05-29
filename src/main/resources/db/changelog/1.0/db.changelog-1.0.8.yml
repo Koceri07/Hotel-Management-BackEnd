@@ -1,0 +1,27 @@
+databaseChangeLog:
+  - changeSet:
+      id: create market sale table
+      author: Koceri07
+      changes:
+        - createTable:
+            tableName: market_sale
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: room_number
+                  type: INTEGER
+              - column:
+                  name: total_price
+                  type: DECIMAL(19,2)
+              - column:
+                  name: create_at
+                  type: TIMESTAMP
+              - column:
+                  name: update_at
+                  type: TIMESTAMP

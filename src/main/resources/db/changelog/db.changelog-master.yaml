@@ -1,4 +1,6 @@
 databaseChangeLog:
+#  - include:
+#      file: db/changelog/1.0/db.changelog-1.0.1.yml
   - includeAll:
       path: db/changelog/1.0
   - includeAll:
