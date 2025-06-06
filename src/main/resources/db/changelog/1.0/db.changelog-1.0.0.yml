@@ -29,7 +29,7 @@ databaseChangeLog:
                   type: VARCHAR(255)
               - column:
                   name: wristband
-                  type: VARCHAR(50)  # enum stored as string
+                  type: VARCHAR(50)
               - column:
                   name: room_number
                   type: INT

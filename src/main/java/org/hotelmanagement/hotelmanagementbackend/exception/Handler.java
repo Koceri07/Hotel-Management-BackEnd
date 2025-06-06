@@ -25,6 +25,12 @@ public class Handler {
 
     @ExceptionHandler
     public ResponseEntity<Error> ReservationAlreadyExists(ReservationAlreadyExists e){
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new Error(e.getMessage(), "Reservation Alredy Exists"));
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new Error(e.getMessage(), "Reservation Already Exists"));
+    }
+
+
+    @ExceptionHandler
+    public ResponseEntity<Error> UnAuthorized(UnAuthorizedException e){
+        return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body(new Error(e.getMessage(), "UnAuthorized"));
     }
 }

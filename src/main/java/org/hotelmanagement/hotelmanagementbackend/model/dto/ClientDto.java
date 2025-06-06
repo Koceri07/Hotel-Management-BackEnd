@@ -31,5 +31,5 @@ public class ClientDto {
     private boolean reservation_status ;
     private int stay_duration;
     private LocalDateTime check_in;
-    private List<ReservationEntity> reservations;
+//    private List<ReservationEntity> reservations;
 }

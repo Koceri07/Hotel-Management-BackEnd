@@ -10,6 +10,6 @@ import lombok.NoArgsConstructor;
 public class MinibarItemDto {
     private Long id;
     private String name;
-    private String price;
+    private Double price;
 
 }
